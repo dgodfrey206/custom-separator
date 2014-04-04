@@ -6,7 +6,7 @@ namespace custom
     {
         sep_impl(std::string const& separator);
         std::string separator;
-    };
+    }; 
     
     sep_impl sep(std::string const& str)
     {
