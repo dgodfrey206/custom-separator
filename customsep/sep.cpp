@@ -69,7 +69,7 @@ std::ostream& set_separator(std::ostream& os, const custom::sep_impl& manip)
 std::ostream& operator<<(std::ostream& os, const custom::sep_impl& manip)
 {
     std::ostream* p = os.tie();
-    if (p && !p->iword(separatorEnabled())
+    if (p && !p->iword(separatorEnabled()))
     {
         set_separator(*p, manip);
         p->iword(separatorEnabled()) = true;
