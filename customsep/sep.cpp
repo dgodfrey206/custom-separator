@@ -38,8 +38,8 @@ class space_delimited_output_stream
 {
 public:
     space_delimited_output_stream(std::ostream& os)
-        : std::ostream(this)
-        , space_delimited_output_buffer(os.rdbuf())
+        : space_delimited_output_buffer(os.rdbuf())
+        , std::ostream(this)
     {
         this->tie(this); 
     }
