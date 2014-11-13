@@ -9,4 +9,4 @@ just to get the output `1 2 3`. Instead, this stream uses a custom `std::streamb
 
     string_delimited_output_stream str(std::cout);
     
-The default separator is a space character but it is trivial to allow any separator. When the custom functionality is turned off (calling `tie()` will `nullptr`), this stream (for the most part) acts exactly like the stream that it wraps.
+The default separator is a space character but it can be specified by a second argument. When the custom functionality is turned off (calling `tie()` will `nullptr`), this stream (for the most part) acts exactly like the stream that it wraps.
