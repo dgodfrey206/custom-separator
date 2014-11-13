@@ -7,6 +7,6 @@ A program that allows an arbitrary separator between sequences of output data. W
     
 just to get the output `1 2 3`. Instead, this stream uses a custom `std::streambuf` that writes the separator when the stream is flushed. This functionality can be turned off my simply untieing the stream from itself (i.e `str.tie(nullptr)`). To initialize the stream, simply provide an output stream for it to manipulate:
 
-    space_delimited_output_stream str(std::cout);
+    string_delimited_output_stream str(std::cout);
     
 The default separator is a space character but it is trivial to allow any separator. When the custom functionality is turned off (calling `tie()` will `nullptr`), this stream (for the most part) acts exactly like the stream that it wraps.
