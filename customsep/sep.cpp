@@ -44,3 +44,12 @@ public:
         this->tie(this); 
     }
 };
+
+/* Example:
+
+int main()
+{
+    space_delimited_output_stream str(std::cout);
+    str << "Hello" << "World"; // Will print "Hello World" with a space between them
+}
+*/
