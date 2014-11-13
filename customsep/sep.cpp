@@ -47,7 +47,7 @@ public:
     }
 };
 
-/*
+/* Example:
 int main()
 {
     string_delimited_output_stream str(std::cout, ", ");
