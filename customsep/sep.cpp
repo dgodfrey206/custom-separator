@@ -1,4 +1,5 @@
 #include <iostream>
+#include <streambuf>
 
 class space_delimited_output_buffer : public std::streambuf
 {
