@@ -1,11 +1,12 @@
 #include <iostream>
 #include <streambuf>
 
-class space_delimited_output_buffer : public std::streambuf
+class string_delimited_output_buffer : public std::streambuf
 {
 public:
-    space_delimited_output_buffer(std::streambuf* sbuf)
+    string_delimited_output_buffer(std::streambuf* sbuf, const std::string& delim)
         : m_sbuf(sbuf)
+        , delim(delim)
     { }
  
     virtual int_type overflow(int_type c)
@@ -16,7 +17,7 @@ public:
     virtual int sync()
     {
         if (ok_to_write)
-            this->sputc(' ');
+            this->sputn(delim.data(), delim.size());
         else
             ok_to_write = true;
  
@@ -24,6 +25,7 @@ public:
     }
 private:
     std::streambuf* m_sbuf;
+    std::string delim;
     bool ok_to_write = false;
  
     int internal_sync()
@@ -32,24 +34,23 @@ private:
     }
 };
  
-class space_delimited_output_stream
+class string_delimited_output_stream
     : public std::ostream
-    , private virtual space_delimited_output_buffer
+    , private virtual string_delimited_output_buffer
 {
 public:
-    space_delimited_output_stream(std::ostream& os)
-        : space_delimited_output_buffer(os.rdbuf())
+    string_delimited_output_stream(std::ostream& os, const std::string& delim = " ")
+        : string_delimited_output_buffer(os.rdbuf(), delim)
         , std::ostream(this)
     {
         this->tie(this); 
     }
 };
 
-/* Example:
-
+/*
 int main()
 {
-    space_delimited_output_stream str(std::cout);
-    str << "Hello" << "World"; // Will print "Hello World" with a space between them
+    string_delimited_output_stream str(std::cout, ", ");
+    str << "Hello" << "World"; // Prints "Hello, World"
 }
 */
